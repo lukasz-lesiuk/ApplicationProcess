@@ -1,21 +1,21 @@
-package com.codecool.model;
+package com.codecool.testfiles;
 
-import com.codecool.testfiles.JavaPostgreSqlRetrieve;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class DatabaseSearchTool {
-    private String url = "jdbc:postgresql://localhost:5432/application_process_db";
-    private String user = "postgres";
-    private String password = "sMuGa1@1";
+public class JavaPostgreSqlRetrieve {
 
-    public DatabaseSearchTool() {
-        ;
-    }
+    public static void main(String[] args) {
 
-    public void selectMentorsNames() {
+        String url = "jdbc:postgresql://localhost:5432/application_process_db";
+        String user = "postgres";
+        String password = "sMuGa1@1";
+
         try (Connection con = DriverManager.getConnection(url, user, password);
              PreparedStatement pst = con.prepareStatement("SELECT * FROM mentors");
              ResultSet rs = pst.executeQuery()) {
@@ -27,9 +27,9 @@ public class DatabaseSearchTool {
             }
 
         } catch (SQLException ex) {
+
             Logger lgr = Logger.getLogger(JavaPostgreSqlRetrieve.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
-
     }
 }

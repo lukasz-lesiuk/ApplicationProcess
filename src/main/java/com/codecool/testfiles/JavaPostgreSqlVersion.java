@@ -1,4 +1,4 @@
-package com.codecool;
+package com.codecool.testfiles;
 
 //package com.zetcode;
 import java.sql.*;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class JavaPostgreSqlVersion {
 
     public static void main(String[] args) throws ClassNotFoundException {
-        Class.forName("org.postgresql.Driver");
+//        Class.forName("org.postgresql.Driver");
 
         String url = "jdbc:postgresql://localhost:5432/application_process_db";
         String user = "postgres";

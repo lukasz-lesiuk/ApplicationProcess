@@ -1,8 +1,10 @@
 package com.codecool;
 
+import com.codecool.controller.Controller;
+
 public class App {
     public static void main(String[] args) {
-        // run controller
-        System.out.println("lama");
+        Controller controller = new Controller();
+        controller.run();
     }
 }

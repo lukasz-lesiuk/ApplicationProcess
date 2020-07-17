@@ -21,6 +21,7 @@ public class Controller {
             // TODO print menu
             //TODO get choice
             databaseSearchTool.selectMentorsNames();
+            shouldRun = false;
         }
     }
 }
