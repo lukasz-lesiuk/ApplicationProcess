@@ -1,6 +1,9 @@
 package com.codecool.testfiles;
 
 //package com.zetcode;
+import com.codecool.properties.propertiesDAO;
+import com.codecool.properties.propertiesDAOcsv;
+
 import java.sql.*;
 //import java.sql.DriverManager;
 //import java.sql.ResultSet;
@@ -14,9 +17,13 @@ public class JavaPostgreSqlVersion {
     public static void main(String[] args) throws ClassNotFoundException {
 //        Class.forName("org.postgresql.Driver");
 
+//        propertiesDAO propertiesLoader = new propertiesDAOcsv();
+//        propertiesLoader.loadProperties();
+
         String url = "jdbc:postgresql://localhost:5432/application_process_db";
         String user = "postgres";
         String password = "sMuGa1@1";
+
 
         try (Connection con = DriverManager.getConnection(url, user, password);
              Statement st = con.createStatement();
