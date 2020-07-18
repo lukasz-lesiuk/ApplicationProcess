@@ -24,13 +24,24 @@ public class Controller {
         optionsList.add("Show mentors names");
         optionsList.add("Show mentors nicknames from Miskolc");
         optionsList.add("Add new mentor");
+        optionsList.add("Get mentor with id 1");
+        optionsList.add("Quit");
+
+        //print name of all the people from table
+        //print nickname of mentor from specified city
+        //print fullname, phone of person by thier name
+        //print fulname, phone of person by part of thier mail
+        //insert applicant or mentor
+        //delete applicant or mentor
+        //update applicant or mentor field;
 
         boolean shouldRun = true;
         while (shouldRun == true) {
             int userChoice = getChoice(optionsList,"Choose your action:");
 
             if (userChoice == 1) {
-                databaseInterfaceTool.retrialQuery("SELECT * FROM mentors;");
+//                databaseInterfaceTool.retrialQuery("SELECT * FROM mentors;");
+                databaseInterfaceTool.retrialQueryToString("SELECT * FROM mentors;");
                 shouldRun = false;
             } else if (userChoice == 2) {
                 databaseInterfaceTool.retrialQuery("SELECT first_name, last_name FROM mentors;");
@@ -39,8 +50,13 @@ public class Controller {
                 databaseInterfaceTool.retrialQuery("SELECT nick_name FROM mentors WHERE city LIKE 'Miskolc';");
                 shouldRun = false;
             } else if (userChoice == 4) {
-                databaseInterfaceTool.modyficationQuery();
+                databaseInterfaceTool.modificationQuery();
                 shouldRun =false;
+            }  else if (userChoice == 5) {
+                databaseInterfaceTool.retrialQueryToString("SELECT * FROM mentors WHERE id = 1;");
+                shouldRun = false;
+            }  else if (userChoice == 6) {
+                shouldRun = false;
             }
         }
     }

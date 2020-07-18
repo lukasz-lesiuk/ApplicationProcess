@@ -38,7 +38,7 @@ public class View {
         String logo =ANSI_YELLOW + "Application Process" + ANSI_YELLOW + "\n\n";
         System.out.print(logo.replaceAll("xx","\\\\"));
         printMessage(message);
-        int changeIndex = 0;
+        int changeIndex = 1;
         try {
             for (int index = 0; index < optionsList.size(); index++) {
                 printMessage(ANSI_BLUE + "(" + (index+changeIndex) + ") " + optionsList.get(index) + ANSI_BLUE);

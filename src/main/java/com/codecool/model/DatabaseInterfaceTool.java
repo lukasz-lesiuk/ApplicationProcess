@@ -28,8 +28,8 @@ public class DatabaseInterfaceTool {
 
     public void retrialQuery(String query) {
         try (Connection con = DriverManager.getConnection(url, user, password);
-            PreparedStatement pst = con.prepareStatement(query);
-            ResultSet rs = pst.executeQuery()) {
+             PreparedStatement pst = con.prepareStatement(query);
+             ResultSet rs = pst.executeQuery()) {
             view.printResultSet(rs);
 
         } catch (SQLException ex) {
@@ -38,7 +38,22 @@ public class DatabaseInterfaceTool {
         }
     }
 
-    public void modyficationQuery() {
+    public String retrialQueryToString(String query) {
+        String queryResponse = "";
+        try (Connection con = DriverManager.getConnection(url, user, password);
+            PreparedStatement pst = con.prepareStatement(query);
+            ResultSet rs = pst.executeQuery()) {
+//            view.printResultSet(rs);
+            queryResponse = convertResultSetToString(rs);
+            System.out.println(queryResponse);
+        } catch (SQLException ex) {
+            Logger lgr = Logger.getLogger(JavaPostgreSqlRetrieve.class.getName());
+            lgr.log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return  queryResponse;
+    }
+
+    public void modificationQuery() {
         int id = 121;
         String first_name = "Lama";
         String last_name = "Lama";
@@ -70,6 +85,42 @@ public class DatabaseInterfaceTool {
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
+
+    private String convertResultSetToString(ResultSet resultSet) throws SQLException {
+        String queryResponse = "";
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                String columnValue = resultSet.getString(i);
+                if (i > 1) {
+                    queryResponse = queryResponse + ", " + columnValue;
+                } else {
+                    queryResponse = columnValue;
+                }
+            }
+        }
+        return queryResponse;
+    }
+
+    private String getTableHeaders(ResultSet resultSet) throws SQLException {
+        String queryResponse = "";
+        ResultSetMetaData rsmd = resultSet.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (resultSet.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                String columnValue = resultSet.getString(i);
+                if (i > 1) {
+                    queryResponse = queryResponse + ", " + columnValue;
+                } else {
+                    queryResponse = columnValue;
+                }
+            }
+        }
+        return queryResponse;
+    }
+
+
 }
 
 
