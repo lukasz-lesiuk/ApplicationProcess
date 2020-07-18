@@ -39,7 +39,7 @@ public class DatabaseInterfaceTool {
     }
 
     public void modyficationQuery() {
-//        int id = 121;
+        int id = 121;
         String first_name = "Lama";
         String last_name = "Lama";
         String nick_name = "Lama";
@@ -48,21 +48,20 @@ public class DatabaseInterfaceTool {
         String city = "Tybet";
         int favourite_number = 13;
 
-        String query = "INSERT INTO mentors(first_name, last_name, nick_name," +
-                        " phone_number, email, city, favourite_number) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO mentors(id, first_name, last_name, nick_name," +
+                        " phone_number, email, city, favourite_number) VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
 
 
         try (Connection con = DriverManager.getConnection(url, user, password);
             PreparedStatement pst = con.prepareStatement(query)) {
-//            ResultSet rs = pst.executeQuery()) {
-//            pst.setInt(1, id);
-            pst.setString(1, first_name);
-            pst.setString(2, last_name);
-            pst.setString(3, nick_name);
-            pst.setInt(4, phone_number);
-            pst.setString(5, email);
-            pst.setString(6, city);
-            pst.setInt(7, favourite_number);
+            pst.setInt(1, id);
+            pst.setString(2, first_name);
+            pst.setString(3, last_name);
+            pst.setString(4, nick_name);
+            pst.setInt(5, phone_number);
+            pst.setString(6, email);
+            pst.setString(7, city);
+            pst.setInt(8, favourite_number);
 
             pst.executeUpdate();
 

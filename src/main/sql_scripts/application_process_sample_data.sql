@@ -31,7 +31,7 @@ INSERT INTO applicants VALUES (7, 'Jemima', 'Cantu', '003620/423-4261', 'et.risu
 INSERT INTO applicants VALUES (8, 'Carol', 'Arnold', '003630/179-1827', 'dapibus.rutrum@litoratorquent.com', 70730);
 INSERT INTO applicants VALUES (9, 'Jane', 'Forbes', '003670/653-5392', 'janiebaby@adipiscingenimmi.edu', 56882);
 INSERT INTO applicants VALUES (10, 'Ursa', 'William', '003620/496-7064', 'malesuada@mauriseu.net', 91220);
-SELECT pg_catalog.setval('applicants_id_seq', 10, true);
+--SELECT pg_catalog.setval('applicants_id_seq', 10, true);
 
 
 INSERT INTO mentors VALUES

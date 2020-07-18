@@ -3,8 +3,18 @@ package com.codecool.view;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.List;
 
 public class View {
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
     public View() {
         ;
@@ -22,4 +32,28 @@ public class View {
             System.out.println("");
         }
     }
+
+    public void printOptions(List<String> optionsList, String message) {
+
+        String logo =ANSI_YELLOW + "Application Process" + ANSI_YELLOW + "\n\n";
+        System.out.print(logo.replaceAll("xx","\\\\"));
+        printMessage(message);
+        int changeIndex = 0;
+        try {
+            for (int index = 0; index < optionsList.size(); index++) {
+                printMessage(ANSI_BLUE + "(" + (index+changeIndex) + ") " + optionsList.get(index) + ANSI_BLUE);
+            }
+        }catch (IndexOutOfBoundsException e) {
+//            TODO
+        }
+    }
+
+    public void printMessage(String message) {
+        System.out.println(ANSI_BLUE + message + ANSI_BLUE);
+    }
+
+    public void clear(){
+        System.out.print("\033[H\033[2J");
+    }
+
 }
