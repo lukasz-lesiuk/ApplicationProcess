@@ -59,4 +59,4 @@ INSERT INTO mentors VALUES
   (23, 'Bence', 'Fábián', 'Benec', '003620/123-7654', 'bence.fabian@codecool.com', 'Budapest', NULL),
   (1, 'Attila', 'Molnár', 'Atesz', '003670/630-0539', 'attila.molnar@codecool.com', 'Budapest', 23);
 
-SELECT pg_catalog.setval('mentors_id_seq', 22, true);
+--SELECT pg_catalog.setval('mentors_id_seq', 22, true);
