@@ -13,9 +13,9 @@ public class DAOfromPsql implements DAO {
     DatabaseInterfaceTool accessTool = new DatabaseInterfaceTool();
 
     @Override
-    public Mentor pickMentor(int id) {
+    public Mentor getMentor(int id) {
         String retrievedString = accessTool.retrieveQueryToString("SELECT * FROM mentors WHERE id = " + id + " ;");
-        List<String> attributesList = new ArrayList<>(Arrays.asList(retrievedString.split(",")));
+        List<String> attributesList = new ArrayList<>(Arrays.asList(retrievedString.split(", ")));
         //id retrieval unnecessary since id was declaretd at the start
         String firstName = attributesList.get(1);
         String lastName = attributesList.get(2);
@@ -23,14 +23,21 @@ public class DAOfromPsql implements DAO {
         String phoneNo = attributesList.get(4);
         String email = attributesList.get(5);
         String city = attributesList.get(6);
-        int favNum = Integer.parseInt(attributesList.get(7));
+        Integer favNum = Integer.parseInt(attributesList.get(7));
+//        int favNum = 3;
 
         return new Mentor(id, firstName, lastName, nickName, phoneNo, email, city, favNum);
     }
 
     @Override
-    public List<Mentor> GetAllMentors() {
-        return null;
+    public List<Mentor> getAllMentors() {
+        int peopleQty = getRecordsQty("mentors");
+        List<Mentor> peopleList = new ArrayList<Mentor>();
+
+        for (int i = 0; i < peopleQty; i++) {
+            peopleList.add(getMentor(i));
+        }
+        return peopleList;
     }
 
     @Override
@@ -46,6 +53,11 @@ public class DAOfromPsql implements DAO {
     @Override
     public void deletePerson(Person person, String tableName) {
 
+    }
+
+    private int getRecordsQty(String tableName) {
+        String retrievedString = accessTool.retrieveQueryToString("SELECT COUNT(*) FROM " + tableName + ";");
+        return Integer.parseInt(retrievedString);
     }
 
 }

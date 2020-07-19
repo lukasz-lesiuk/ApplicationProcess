@@ -49,7 +49,7 @@ public class DatabaseInterfaceTool {
             Logger lgr = Logger.getLogger(JavaPostgreSqlRetrieve.class.getName());
             lgr.log(Level.SEVERE, ex.getMessage(), ex);
         }
-        System.out.println(queryResponse);
+//        System.out.println(queryResponse);
         return  queryResponse;
     }
 

@@ -1,6 +1,10 @@
 package com.codecool.controller;
 
+import com.codecool.DAO.DAO;
+import com.codecool.DAO.DAOfromPsql;
 import com.codecool.model.DatabaseInterfaceTool;
+import com.codecool.people.Mentor;
+import com.codecool.people.Person;
 import com.codecool.view.View;
 
 import java.util.ArrayList;
@@ -12,10 +16,12 @@ public class Controller {
     private Scanner scanner = new Scanner(System.in);
     private DatabaseInterfaceTool databaseInterfaceTool;
     private View view;
+    private DAO dao;
 
     public Controller() {
         this.databaseInterfaceTool = new DatabaseInterfaceTool();
         this.view = new View();
+        this.dao = new DAOfromPsql();
     }
 
     public void run() {
@@ -41,20 +47,23 @@ public class Controller {
 
             if (userChoice == 1) {
 //                databaseInterfaceTool.retrialQuery("SELECT * FROM mentors;");
-                databaseInterfaceTool.retrieveQueryToString("SELECT * FROM mentors;");
-                shouldRun = false;
+//                databaseInterfaceTool.retrieveQueryToString("SELECT * FROM mentors;");
+                List<Mentor> mentors = dao.getAllMentors();
+                for (Mentor mentor: mentors) {
+                    String queryResponse = mentor.printMentor();
+                    view.printMessage(queryResponse);
+                }
             } else if (userChoice == 2) {
                 databaseInterfaceTool.retrialQuery("SELECT first_name, last_name FROM mentors;");
-                shouldRun = false;
             } else if (userChoice == 3) {
                 databaseInterfaceTool.retrialQuery("SELECT nick_name FROM mentors WHERE city LIKE 'Miskolc';");
-                shouldRun = false;
             } else if (userChoice == 4) {
                 databaseInterfaceTool.modificationQuery();
-                shouldRun =false;
             }  else if (userChoice == 5) {
-                databaseInterfaceTool.retrieveQueryToString("SELECT * FROM mentors WHERE id = 1;");
-                shouldRun = false;
+//                databaseInterfaceTool.retrieveQueryToString("SELECT * FROM mentors WHERE id = 1;");
+                Mentor mentor = dao.getMentor(1);
+                String queryResponse = mentor.printMentor();
+                view.printMessage(queryResponse);
             }  else if (userChoice == 6) {
                 shouldRun = false;
             }
@@ -71,7 +80,6 @@ public class Controller {
             view.clear();
             view.printOptions(optionsList, message);
             String StringChoice = input.nextLine();
-//            choice = 1;
             choice = validateAsInt(StringChoice);
             if (choice <= optionsList.size()) {
                 correctOption = true;
