@@ -41,7 +41,7 @@ public class Controller {
 
             if (userChoice == 1) {
 //                databaseInterfaceTool.retrialQuery("SELECT * FROM mentors;");
-                databaseInterfaceTool.retrialQueryToString("SELECT * FROM mentors;");
+                databaseInterfaceTool.retrieveQueryToString("SELECT * FROM mentors;");
                 shouldRun = false;
             } else if (userChoice == 2) {
                 databaseInterfaceTool.retrialQuery("SELECT first_name, last_name FROM mentors;");
@@ -53,7 +53,7 @@ public class Controller {
                 databaseInterfaceTool.modificationQuery();
                 shouldRun =false;
             }  else if (userChoice == 5) {
-                databaseInterfaceTool.retrialQueryToString("SELECT * FROM mentors WHERE id = 1;");
+                databaseInterfaceTool.retrieveQueryToString("SELECT * FROM mentors WHERE id = 1;");
                 shouldRun = false;
             }  else if (userChoice == 6) {
                 shouldRun = false;

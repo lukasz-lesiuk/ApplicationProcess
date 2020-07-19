@@ -11,4 +11,16 @@ public class Mentor extends Person {
         this.city = city;
         this.favNum = favNum;
     }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public int getFavNum() {
+        return favNum;
+    }
 }
