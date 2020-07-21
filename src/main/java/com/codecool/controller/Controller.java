@@ -26,7 +26,7 @@ public class Controller {
 
     public void run() {
         List<String> optionsList = new ArrayList<>();
-        optionsList.add("Show all mentors");
+        optionsList.add("Show all mentors (not working)");
         optionsList.add("Show mentors names");
         optionsList.add("Show mentors nicknames from Miskolc");
         optionsList.add("Add new mentor");
